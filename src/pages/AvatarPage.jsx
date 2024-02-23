@@ -18,7 +18,9 @@ export default function AvatarPage({
   /*   capturedImage && console.log("capturedImage =>", capturedImage.split(",")[1]); */
   // selectedImage && console.log("selectedImage =>", selectedImage.split(",")[1]);
   /*  console.log("actual=>", maleCardsActual, femaleCardsActual); */
+
   selectedGender && console.log(selectedGender);
+
   // toast options
   const toastOptions = {
     position: "top-left",

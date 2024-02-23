@@ -2,12 +2,11 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Webcam from "react-webcam";
 import logo from "./../../../assets/logo.png";
-import frame from "./../../../assets/capture-image-page/desktop-webcam-frame.png";
 import { Link } from "react-router-dom";
 
 export default function CaptureMobileImage({ handleSubmit, setImg, img }) {
   const webRef = useRef();
-  img && console.log(img);
+  // img && console.log(img);
 
   const handleCapture = e => {
     if (e.target.innerText === "Capture") {

@@ -71,10 +71,8 @@ export default function AvatarMobile({
         {cards?.map((src, index) => (
           <div
             key={index}
-            className={`singleImageContainer ${
-              index === 0 || index === 5 ? "mt" : ""
-            }`}
-            id={index == 5 ? "mt" : ""}
+            className="singleImageContainer"
+            id={index == 0 || index == 5 ? "mt" : ""}
             onClick={() => {
               setSelectedImageIndex(index);
               console.log("img", src);
@@ -91,6 +89,7 @@ export default function AvatarMobile({
               <img src={src} alt="modals" />
               <div className="imageHoverContainer"></div>
             </div>
+
             <img
               src={select}
               alt="selected"
@@ -111,7 +110,7 @@ export default function AvatarMobile({
 const AvatarMobileWrapper = styled.div`
   /* border: 1px solid red; */
   width: 100%;
-  /* height: 100vh; */
+  height: 100vh;
   padding: 4vw;
   display: flex;
   flex-direction: column;
@@ -206,10 +205,7 @@ const AvatarMobileWrapper = styled.div`
         display: flex;
       }
     }
-    /*  #mt {
-      margin-top: 20vw;
-    } */
-    .mt {
+    #mt {
       margin-top: 20vw;
     }
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import HomeDesktop from "./../components/home/desktop/HomeDesktop";
+// import HomeDesktop from "./../components/home/desktop/HomeDesktop";
 import HomeMobile from "../components/home/mobile/HomeMobile";
 import styled from "styled-components";
 

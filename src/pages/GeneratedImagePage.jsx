@@ -6,9 +6,10 @@ import frame from "./../assets/generated-image-frame.png";
 import { useReactToPrint } from "react-to-print";
 import EmailFeature from "../components/modal/EmailFeature";
 import { Link } from "react-router-dom";
+import QrFeature from "../components/generateImage/qrFeature/QrFeature";
 
 export default function GeneratedImagePage({ generatedImage, selectedGender }) {
-  const exportRef = useRef();
+  // const exportRef = useRef();
   const printRef = useRef();
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   generatedImage && console.log(generatedImage);
@@ -73,27 +74,34 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
 
       {printImage ? (
         <div className="generatedImageContainer">
-          <div className="generatedImageParent" ref={exportRef}>
+          <div className="generatedImageParent" ref={printRef}>
             <img
               src={printImage}
               alt="generated image"
               className="generatedImage"
-              ref={printRef}
             />
+            <img src={frame} alt="frame" className="frame" />
           </div>
           <div className="buttons">
             {/* print feature */}
             <button onClick={handlePrint}>Print</button>
 
             {/* email feature */}
-            <button onClick={handleEmail}>Email</button>
-            <button
+            {/* <button onClick={handleEmail}>Email</button> */}
+
+            {/* qr feature */}
+            <QrFeature generatedImg={generatedImage} printRef={printRef} />
+
+            {/* <button
               onClick={() =>
-                exportAsImage(exportRef.current, "ai-photobooth-wella")
+                exportAsImage(printRef.current, "ai-photobooth-wella")
               }
             >
               Download
-            </button>
+            </button> */}
+            <Link to={"/avatar"} className="btn">
+              Regenerate
+            </Link>
           </div>
         </div>
       ) : (
@@ -149,11 +157,12 @@ const GeneratedImageWrapper = styled.div`
     gap: 10vw;
     margin-top: 3vw;
     justify-content: space-between;
+    position: relative;
     .generatedImageParent {
       /* border: 1px solid black; */
       margin: 0 auto;
-      width: 80vw;
-      /* position: relative; */
+      width: 70vw;
+      position: relative;
       background-color: #000;
       .generatedImage {
         width: 100.3%;
@@ -175,7 +184,9 @@ const GeneratedImageWrapper = styled.div`
       display: flex;
       justify-content: center;
       gap: 3vw;
-      button {
+      button,
+      .btn {
+        text-decoration: none;
         width: 27%;
         text-align: center;
         border: none;

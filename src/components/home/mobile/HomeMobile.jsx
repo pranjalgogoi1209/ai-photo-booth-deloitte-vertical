@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import logo from "./../../../assets/logo.png";
 
 import {
-  maleCard03,
+  maleCard01,
   maleCard02,
+  maleCard03,
   maleCard04,
-  maleCard06,
+  femaleCard01,
   femaleCard02,
   femaleCard03,
-  femaleCard07,
-  femaleCard09,
+  femaleCard04,
 } from "./../../../assets/home-page/index";
 
 export default function HomeMobile() {
@@ -28,23 +28,23 @@ export default function HomeMobile() {
         {/* first container */}
         <div className="firstContainer">
           <div className="imgContainer1 imgCnt">
-            <img src={femaleCard02} alt="img1" />
+            <img src={femaleCard01} alt="img1" />
           </div>
           <div className="imgContainer2 imgCnt">
-            <img src={maleCard04} alt="img2" />
+            <img src={maleCard01} alt="img2" />
           </div>
         </div>
 
         {/* second container */}
         <div className="secondContainer">
           <div className="imgContainer">
-            <img src={femaleCard03} alt="img3" />
+            <img src={femaleCard02} alt="img3" />
           </div>
           <div className="imgContainer">
             <img src={maleCard02} alt="img4" />
           </div>
           <div className="imgContainer">
-            <img src={femaleCard07} alt="img5" />
+            <img src={femaleCard03} alt="img5" />
           </div>
         </div>
 
@@ -54,10 +54,10 @@ export default function HomeMobile() {
             <img src={maleCard03} alt="img6" />
           </div>
           <div className="imgContainer">
-            <img src={femaleCard09} alt="img7" />
+            <img src={femaleCard04} alt="img7" />
           </div>
           <div className="imgContainer">
-            <img src={maleCard06} alt="img8" />
+            <img src={maleCard04} alt="img8" />
           </div>
         </div>
       </main>

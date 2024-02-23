@@ -14,7 +14,7 @@ export default function SelectGender({ setSelectedGender, selectedGender }) {
 
   const data = [
     { gender: "Male", img: "#", icon: <BiMale />, color: "#6083ce" },
-    { gender: "Female", img: "#", icon: <BiFemale />, color: "#fcbbc5" },
+    { gender: "Female", img: "#", icon: <BiFemale />, color: "#a0777d" },
   ];
 
   // toast options
