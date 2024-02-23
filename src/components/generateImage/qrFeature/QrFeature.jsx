@@ -4,6 +4,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import styles from "./qrFeature.module.css";
 import axios from "axios";
 import logo from "./../../../assets/logo.png";
+import html2canvas from "html2canvas";
 
 export default function QrFeature({ generatedImg, printRef }) {
   const [showQrPopup, setShowQrPopup] = useState(false);
@@ -13,30 +14,31 @@ export default function QrFeature({ generatedImg, printRef }) {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
 
-  const getImageData = img => {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    context.drawImage(img, 0, 0);
-    return canvas.toDataURL("image/png");
-  };
-
   // handle QR code generation
   const handleSubmitQr = () => {
-    console.log("submitting qr");
     setShowQrPopup(true);
+    console.log("submitting qr");
+
     console.log("printRef", printRef.current);
-    axios
-      .post("https://adp24companyday.com/aiphotobooth/upload.php", {
-        img: generatedImg.split(",")[1],
-      })
-      .then(function (response) {
-        console.log(response);
-        setQr(response.data.url);
-        console.log(qr);
-      })
-      .catch(function (error) {
-        console.log(error);
+
+    if (printRef.current) {
+      html2canvas(printRef.current).then(canvas => {
+        const imageUrl = canvas.toDataURL();
+
+        axios
+          .post("https://adp24companyday.com/aiphotobooth/upload.php", {
+            img: imageUrl.split(",")[1],
+          })
+          .then(function (response) {
+            console.log(response);
+            setQr(response.data.url);
+            console.log(qr);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       });
+    }
   };
   return (
     <div className={styles.QrFeature}>
