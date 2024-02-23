@@ -21,7 +21,7 @@ export default function HomeMobile() {
         <Link to={"/"} className="logo">
           <img src={logo} alt="logo" />
         </Link>
-        <h1>AI Photobooth Generator</h1>
+        <h1>Dream. Believe. Achieve.</h1>
       </header>
 
       <main>
