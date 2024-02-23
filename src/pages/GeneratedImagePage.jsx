@@ -7,6 +7,8 @@ import { useReactToPrint } from "react-to-print";
 import EmailFeature from "../components/modal/EmailFeature";
 import { Link } from "react-router-dom";
 import QrFeature from "../components/generateImage/qrFeature/QrFeature";
+import html2canvas from "html2canvas";
+import axios from "axios";
 
 export default function GeneratedImagePage({ generatedImage, selectedGender }) {
   // const exportRef = useRef();
@@ -14,6 +16,7 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   generatedImage && console.log(generatedImage);
   const [printImage, setPrintImage] = useState();
+  const [url, setUrl] = useState("");
 
   // handlePrint
   // window.print();
@@ -51,6 +54,34 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
     }
   }, [generatedImage]);
 
+  useEffect(() => {
+    console.log("useEffect working", printRef.current);
+
+    setTimeout(() => {
+      if (printRef.current) {
+        console.log("printref working");
+        html2canvas(printRef.current).then(canvas => {
+          const imageUrl = canvas.toDataURL();
+          axios
+            .post(
+              "https://adp24companyday.com/aiphotobooth_deloitte/upload.php",
+              {
+                img: imageUrl.split(",")[1],
+              }
+            )
+            .then(function (response) {
+              console.log(response);
+              setUrl(response.data.url);
+              console.log(url);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        });
+      }
+    }, 1000);
+  }, [generatedImage]);
+
   return (
     <GeneratedImageWrapper>
       {/* email feature */}
@@ -81,13 +112,14 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
           <div className="buttons">
             {/* print feature */}
             {/* <button onClick={handlePrint}>Print</button> */}
-
             {/* email feature */}
             {/* <button onClick={handleEmail}>Email</button> */}
-
             {/* qr feature */}
-            <QrFeature generatedImg={generatedImage} printRef={printRef} />
-
+            <QrFeature
+              generatedImg={generatedImage}
+              printRef={printRef}
+              url={url}
+            />
             {/* <button
               onClick={() =>
                 exportAsImage(printRef.current, "ai-photobooth-wella")

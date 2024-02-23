@@ -42,8 +42,6 @@ export default function AvatarPage({
         })
         .then(function (response) {
           console.log(response);
-          // getScaleImage()
-
           setGeneratedImage(`data:image/webp;base64,${response.data.result}`);
         })
         .catch(function (error) {

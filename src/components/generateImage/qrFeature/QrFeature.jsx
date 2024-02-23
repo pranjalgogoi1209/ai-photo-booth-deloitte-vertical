@@ -6,13 +6,9 @@ import axios from "axios";
 import logo from "./../../../assets/logo.png";
 import html2canvas from "html2canvas";
 
-export default function QrFeature({ generatedImg, printRef }) {
+export default function QrFeature({ generatedImg, printRef, url }) {
   const [showQrPopup, setShowQrPopup] = useState(false);
   const [qr, setQr] = useState("");
-
-  // converting selectedImage to base64 format
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
 
   // handle QR code generation
   const handleSubmitQr = () => {
@@ -21,10 +17,9 @@ export default function QrFeature({ generatedImg, printRef }) {
 
     console.log("printRef", printRef.current);
 
-    if (printRef.current) {
+    /*  if (printRef.current) {
       html2canvas(printRef.current).then(canvas => {
         const imageUrl = canvas.toDataURL();
-
         axios
           .post("https://adp24companyday.com/aiphotobooth/upload.php", {
             img: imageUrl.split(",")[1],
@@ -39,12 +34,16 @@ export default function QrFeature({ generatedImg, printRef }) {
           });
       });
     }
+ */
+    // setQr(url);
   };
   return (
     <div className={styles.QrFeature}>
       <button
         onClick={handleSubmitQr}
         style={{ display: "flex", justifyContent: "center", width: "30vw" }}
+        disabled={url ? false : true}
+        // className={styles.disabled}
       >
         QR
       </button>
@@ -69,7 +68,7 @@ export default function QrFeature({ generatedImg, printRef }) {
                 <img src={logo} alt="logo" />
               </div>
             </header>
-            <QRCode size={256} value={qr} className={styles.qrCode} />
+            <QRCode size={256} value={url} className={styles.qrCode} />
           </div>
         </div>
       )}
