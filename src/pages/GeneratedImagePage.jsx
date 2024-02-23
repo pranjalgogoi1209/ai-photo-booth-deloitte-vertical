@@ -36,15 +36,11 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
         const context = canvas.getContext("2d");
         if (selectedGender.toLowerCase() === "female") {
           canvas.width = img.width * 1;
-          canvas.height = img.height * 1.06;
+          canvas.height = img.height * 1;
         } else if (selectedGender.toLowerCase() === "male") {
-          canvas.width = img.width * 1.1;
-          canvas.height = img.height * 1.035;
+          canvas.width = img.width * 1;
+          canvas.height = img.height * 1;
         }
-        /*  else {
-          canvas.width = img.width * 1.1;
-          canvas.height = img.height * 1.0339;
-        } */
 
         context.drawImage(img, 0, 0, canvas.width, canvas.height);
         const scaledImage = canvas.toDataURL("image/png");
@@ -84,7 +80,7 @@ export default function GeneratedImagePage({ generatedImage, selectedGender }) {
           </div>
           <div className="buttons">
             {/* print feature */}
-            <button onClick={handlePrint}>Print</button>
+            {/* <button onClick={handlePrint}>Print</button> */}
 
             {/* email feature */}
             {/* <button onClick={handleEmail}>Email</button> */}
@@ -187,7 +183,7 @@ const GeneratedImageWrapper = styled.div`
       button,
       .btn {
         text-decoration: none;
-        width: 27%;
+        width: 30vw;
         text-align: center;
         border: none;
         background-color: transparent;

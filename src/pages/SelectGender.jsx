@@ -78,7 +78,6 @@ const SelectGenderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15vw;
-  justify-content: space-between;
   button {
     border: none;
     outline: none;
